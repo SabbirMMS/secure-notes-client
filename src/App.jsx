@@ -5,6 +5,9 @@ import Nav from './components/Nav'
 import ProtectedRoute from './components/ProtectedRoute'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import Notes from './pages/Notes'
+import Posts from './pages/Posts'
+import UserPosts from './pages/UserPosts'
 
 function Home() {
   const { user, loading } = useAuth()
@@ -21,10 +24,10 @@ function AppRoutes() {
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/posts" element={<ComingSoon name="Posts" />} />
-      <Route path="/users/:id/posts" element={<ComingSoon name="User posts" />} />
+      <Route path="/posts" element={<Posts />} />
+      <Route path="/users/:id/posts" element={<UserPosts />} />
       <Route element={<ProtectedRoute />}>
-        <Route path="/notes" element={<ComingSoon name="My notes" />} />
+        <Route path="/notes" element={<Notes />} />
       </Route>
       <Route element={<AdminRoute />}>
         <Route path="/admin/users" element={<ComingSoon name="Users" />} />
