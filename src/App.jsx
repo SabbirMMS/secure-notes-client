@@ -8,14 +8,15 @@ import Register from './pages/Register'
 import Notes from './pages/Notes'
 import Posts from './pages/Posts'
 import UserPosts from './pages/UserPosts'
+import AdminUsers from './pages/AdminUsers'
+import AdminNotes from './pages/AdminNotes'
+import AdminInterests from './pages/AdminInterests'
 
 function Home() {
   const { user, loading } = useAuth()
   if (loading) return <p className="loading">Loading account...</p>
   return <Navigate to={user ? '/notes' : '/login'} replace />
 }
-
-function ComingSoon({ name }) { return <main><h1>{name}</h1><p>This page is in the next stage.</p></main> }
 
 function AppRoutes() {
   return <>
@@ -30,9 +31,9 @@ function AppRoutes() {
         <Route path="/notes" element={<Notes />} />
       </Route>
       <Route element={<AdminRoute />}>
-        <Route path="/admin/users" element={<ComingSoon name="Users" />} />
-        <Route path="/admin/notes" element={<ComingSoon name="All notes" />} />
-        <Route path="/admin/interests" element={<ComingSoon name="Interests" />} />
+        <Route path="/admin/users" element={<AdminUsers />} />
+        <Route path="/admin/notes" element={<AdminNotes />} />
+        <Route path="/admin/interests" element={<AdminInterests />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

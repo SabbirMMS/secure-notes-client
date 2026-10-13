@@ -1,23 +1,23 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../auth'
 
 export default function Nav() {
   const { user, logout } = useAuth()
   const navigate = useNavigate()
   return <nav className="site-nav">
-    <Link to="/posts">Posts</Link>
-    {user && <Link to="/notes">My notes</Link>}
+    <NavLink className={({ isActive }) => isActive ? 'active' : undefined} to="/posts">Posts</NavLink>
+    {user && <NavLink className={({ isActive }) => isActive ? 'active' : undefined} to="/notes">My notes</NavLink>}
     {user?.role === 'admin' && <>
-      <Link to="/admin/users">Users</Link>
-      <Link to="/admin/notes">All notes</Link>
-      <Link to="/admin/interests">Interests</Link>
+      <NavLink className={({ isActive }) => isActive ? 'active' : undefined} to="/admin/users">Users</NavLink>
+      <NavLink className={({ isActive }) => isActive ? 'active' : undefined} to="/admin/notes">All notes</NavLink>
+      <NavLink className={({ isActive }) => isActive ? 'active' : undefined} to="/admin/interests">Interests</NavLink>
     </>}
     {user ? <>
       <span>{user.name}</span>
       <button className="logout" type="button" onClick={() => { logout(); navigate('/login') }}>Log out</button>
     </> : <>
-      <Link to="/login">Log in</Link>
-      <Link to="/register">Register</Link>
+      <NavLink className={({ isActive }) => isActive ? 'active' : undefined} to="/login">Log in</NavLink>
+      <NavLink className={({ isActive }) => isActive ? 'active' : undefined} to="/register">Register</NavLink>
     </>}
   </nav>
 }
