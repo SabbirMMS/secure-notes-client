@@ -24,11 +24,11 @@ export default function Register() {
 
   return <main>
     <h1>Register</h1>
-    <form onSubmit={submit}>
+    <form className="auth-form" onSubmit={submit}>
       <label>Name <input required value={name} onChange={(e) => setName(e.target.value)} /></label>
       <label>Email <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} /></label>
       <label>Password <input type="password" minLength="8" required value={password} onChange={(e) => setPassword(e.target.value)} /></label>
-      <button disabled={saving}>{saving ? 'Registering...' : 'Register'}</button>
+      <button className="primary" disabled={saving}>{saving ? 'Registering...' : 'Register'}</button>
     </form>
     {error && <p role="alert" className="error">{error}</p>}
     <p>Already registered? <Link to="/login">Log in</Link></p>

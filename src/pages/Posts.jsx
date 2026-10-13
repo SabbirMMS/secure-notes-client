@@ -84,20 +84,20 @@ export default function Posts() {
       <form onSubmit={create}>
         <label>Title <input required value={title} onChange={(event) => setTitle(event.target.value)} /></label>
         <label>Content <textarea required value={content} onChange={(event) => setContent(event.target.value)} /></label>
-        <button disabled={saving}>{saving ? 'Saving...' : 'Create post'}</button>
+        <button className="primary" disabled={saving}>{saving ? 'Saving...' : 'Create post'}</button>
       </form>
     </>}
     {actionError && <p role="alert" className="error">{actionError}</p>}
-    {loading && <p>Loading posts...</p>}
+    {loading && <p className="loading">Loading posts...</p>}
     {error && <p role="alert" className="error">{error}</p>}
     {authorError && <p role="alert" className="error">{authorError}</p>}
     {!loading && !error && posts.length === 0 && <p>No posts yet.</p>}
     {!loading && !error && <>
-      <ul>{posts.map((post) => <li key={post._id}>
+      <ul className="card-list">{posts.map((post) => <li key={post._id}>
         <h2>{post.title}</h2><p>{post.content}</p>
         <p>By <Link to={`/users/${post.author}/posts`}>{authors[post.author] || post.author}</Link></p>
         {(user?._id === post.author || user?.role === 'admin') &&
-          <button type="button" disabled={saving} onClick={() => remove(post)}>Delete</button>}
+          <button className="danger" type="button" disabled={saving} onClick={() => remove(post)}>Delete</button>}
       </li>)}</ul>
       {pagination && <Pagination page={page} totalPages={pagination.totalPages} disabled={saving} onPageChange={setPage} />}
     </>}

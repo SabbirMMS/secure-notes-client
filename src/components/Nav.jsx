@@ -4,7 +4,7 @@ import { useAuth } from '../auth'
 export default function Nav() {
   const { user, logout } = useAuth()
   const navigate = useNavigate()
-  return <nav>
+  return <nav className="site-nav">
     <Link to="/posts">Posts</Link>
     {user && <Link to="/notes">My notes</Link>}
     {user?.role === 'admin' && <>
@@ -14,7 +14,7 @@ export default function Nav() {
     </>}
     {user ? <>
       <span>{user.name}</span>
-      <button type="button" onClick={() => { logout(); navigate('/login') }}>Log out</button>
+      <button className="logout" type="button" onClick={() => { logout(); navigate('/login') }}>Log out</button>
     </> : <>
       <Link to="/login">Log in</Link>
       <Link to="/register">Register</Link>

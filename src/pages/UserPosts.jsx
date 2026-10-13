@@ -31,13 +31,13 @@ export default function UserPosts() {
   }, [id, page])
 
   return <main>
-    {loading && <p>Loading user posts...</p>}
+    {loading && <p className="loading">Loading user posts...</p>}
     {error && <p role="alert" className="error">{error}</p>}
     {!loading && !error && data && <>
       <h1>Posts by {data.user.name}</h1>
       <p>Interests: {data.user.interests?.length ? data.user.interests.join(', ') : 'None listed'}</p>
       {data.posts.length === 0 && <p>No posts on this page.</p>}
-      <ul>{data.posts.map((post) => <li key={post._id}>
+      <ul className="card-list">{data.posts.map((post) => <li key={post._id}>
         <h2>{post.title}</h2><p>{post.content}</p>
       </li>)}</ul>
       <Pagination page={page} hasMore={pagination?.hasMore} onPageChange={setPage} />

@@ -88,24 +88,24 @@ export default function Notes() {
     <form onSubmit={create}>
       <label>Title <input required value={title} onChange={(event) => setTitle(event.target.value)} /></label>
       <label>Content <textarea required value={content} onChange={(event) => setContent(event.target.value)} /></label>
-      <button disabled={saving}>{saving ? 'Saving...' : 'Create note'}</button>
+      <button className="primary" disabled={saving}>{saving ? 'Saving...' : 'Create note'}</button>
     </form>
     {actionError && <p role="alert" className="error">{actionError}</p>}
     <h2>Notes</h2>
-    {loading && <p>Loading notes...</p>}
+    {loading && <p className="loading">Loading notes...</p>}
     {error && <p role="alert" className="error">{error}</p>}
     {!loading && !error && notes.length === 0 && <p>No notes yet.</p>}
     {!loading && !error && <>
-      <ul>{notes.map((note) => <li key={note._id}>
+      <ul className="card-list">{notes.map((note) => <li key={note._id}>
         {editingId === note._id ? <form onSubmit={saveEdit}>
           <label>Title <input required value={editTitle} onChange={(event) => setEditTitle(event.target.value)} /></label>
           <label>Content <textarea required value={editContent} onChange={(event) => setEditContent(event.target.value)} /></label>
-          <div><button disabled={saving}>{saving ? 'Saving...' : 'Save'}</button>{' '}
+          <div><button className="primary" disabled={saving}>{saving ? 'Saving...' : 'Save'}</button>{' '}
             <button type="button" disabled={saving} onClick={() => setEditingId(null)}>Cancel</button></div>
         </form> : <>
           <h3>{note.title}</h3><p>{note.content}</p>
           <button type="button" disabled={saving} onClick={() => startEdit(note)}>Edit</button>{' '}
-          <button type="button" disabled={saving} onClick={() => remove(note)}>Delete</button>
+          <button className="danger" type="button" disabled={saving} onClick={() => remove(note)}>Delete</button>
         </>}
       </li>)}</ul>
       {pagination && <Pagination page={page} totalPages={pagination.totalPages} disabled={saving} onPageChange={setPage} />}

@@ -23,10 +23,10 @@ export default function Login() {
 
   return <main>
     <h1>Log in</h1>
-    <form onSubmit={submit}>
+    <form className="auth-form" onSubmit={submit}>
       <label>Email <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} /></label>
       <label>Password <input type="password" required value={password} onChange={(e) => setPassword(e.target.value)} /></label>
-      <button disabled={saving}>{saving ? 'Logging in...' : 'Log in'}</button>
+      <button className="primary" disabled={saving}>{saving ? 'Logging in...' : 'Log in'}</button>
     </form>
     {error && <p role="alert" className="error">{error}</p>}
     <p>New here? <Link to="/register">Register</Link></p>

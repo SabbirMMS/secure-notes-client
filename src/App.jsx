@@ -11,7 +11,7 @@ import UserPosts from './pages/UserPosts'
 
 function Home() {
   const { user, loading } = useAuth()
-  if (loading) return <p>Loading account...</p>
+  if (loading) return <p className="loading">Loading account...</p>
   return <Navigate to={user ? '/notes' : '/login'} replace />
 }
 
